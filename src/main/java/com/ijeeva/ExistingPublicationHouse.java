@@ -1,26 +1,28 @@
 package com.ijeeva;
 
-import com.ijeeva.entities.Author;
 import com.ijeeva.entities.Book;
-import com.ijeeva.entities.Location;
+import com.ijeeva.entities.PublicationHouse;
 import com.ijeeva.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class CreateAuthors {
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+
+public class ExistingPublicationHouse {
 
     public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         try(Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            Author author = new Author("jane", 3, 'f');
-            Location location = new Location("USA", "MI", 3456);
-            author.setLocation(location);
+            PublicationHouse publicationHouse = session.get(PublicationHouse.class, 2l);
+            Book book = new Book("clean code", 900, 6700f);
+            book.setPublicationHouse(publicationHouse);
 
-            session.save(author);
-
+            session.save(book);
             transaction.commit();
         }
     }

@@ -1,6 +1,7 @@
 package com.ijeeva.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -20,8 +21,14 @@ public class Book {
     @Column(nullable = true)
     private Float price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private PublicationHouse publicationHouse;
+
+    @ManyToMany(mappedBy = "books")
+    private Set<Author> authors;
+
+    @OneToMany(mappedBy = "book")
+    private Set<BookStudent> issuedStudents;
 
     public Book() {}
 
@@ -69,6 +76,22 @@ public class Book {
 
     public void setPublicationHouse(PublicationHouse publicationHouse) {
         this.publicationHouse = publicationHouse;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Set<BookStudent> getIssuedStudents() {
+        return issuedStudents;
+    }
+
+    public void setIssuedStudents(Set<BookStudent> issuedStudents) {
+        this.issuedStudents = issuedStudents;
     }
 
     @Override

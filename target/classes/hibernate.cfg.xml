@@ -23,5 +23,7 @@
         <mapping class="com.ijeeva.entities.Author"/>
         <mapping class="com.ijeeva.entities.Location"/>
         <mapping class="com.ijeeva.entities.PublicationHouse"/>
+        <mapping class="com.ijeeva.entities.Student"/>
+        <mapping class="com.ijeeva.entities.BookStudent"/>
     </session-factory>
 </hibernate-configuration>

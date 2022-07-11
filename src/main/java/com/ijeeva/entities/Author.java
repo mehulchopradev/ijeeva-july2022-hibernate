@@ -1,6 +1,7 @@
 package com.ijeeva.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "authors")
@@ -24,6 +25,10 @@ public class Author {
     // @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     // by default eager
     private Location location;
+
+    // by default is lazy
+    @ManyToMany
+    private Set<Book> books;
 
     public Author() {}
 
@@ -71,6 +76,14 @@ public class Author {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     @Override
